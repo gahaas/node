@@ -2172,7 +2172,8 @@ void Initialize(Local<Object> target,
   Local<String> channelWrapString =
       FIXED_ONE_BYTE_STRING(env->isolate(), "ChannelWrap");
   channel_wrap->SetClassName(channelWrapString);
-  target->Set(channelWrapString, channel_wrap->GetFunction(context).ToLocalChecked());
+  target->Set(channelWrapString,
+              channel_wrap->GetFunction(context).ToLocalChecked());
 }
 
 }  // anonymous namespace

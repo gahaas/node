@@ -78,7 +78,8 @@ void LibuvStreamWrap::Initialize(Local<Object> target,
       FIXED_ONE_BYTE_STRING(env->isolate(), "WriteWrap");
   ww->SetClassName(writeWrapString);
   AsyncWrap::AddWrapMethods(env, ww);
-  target->Set(writeWrapString, ww->GetFunction(env->context()).ToLocalChecked());
+  target->Set(writeWrapString,
+              ww->GetFunction(env->context()).ToLocalChecked());
   env->set_write_wrap_template(ww->InstanceTemplate());
 }
 

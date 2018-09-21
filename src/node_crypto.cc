@@ -365,7 +365,8 @@ void SecureContext::Initialize(Environment* env, Local<Object> target) {
   t->Set(FIXED_ONE_BYTE_STRING(env->isolate(), "kTicketKeyIVIndex"),
          Integer::NewFromUnsigned(env->isolate(), kTicketKeyIVIndex));
 
-  target->Set(secureContextString, t->GetFunction(env->context()).ToLocalChecked());
+  target->Set(secureContextString,
+              t->GetFunction(env->context()).ToLocalChecked());
   env->set_secure_context_constructor_template(t);
 }
 
@@ -3166,7 +3167,8 @@ void Hmac::Initialize(Environment* env, v8::Local<Object> target) {
   env->SetProtoMethod(t, "update", HmacUpdate);
   env->SetProtoMethod(t, "digest", HmacDigest);
 
-  target->Set(FIXED_ONE_BYTE_STRING(env->isolate(), "Hmac"), t->GetFunction(env->context()).ToLocalChecked());
+  target->Set(FIXED_ONE_BYTE_STRING(env->isolate(), "Hmac"),
+              t->GetFunction(env->context()).ToLocalChecked());
 }
 
 
@@ -3285,7 +3287,8 @@ void Hash::Initialize(Environment* env, v8::Local<Object> target) {
   env->SetProtoMethod(t, "update", HashUpdate);
   env->SetProtoMethod(t, "digest", HashDigest);
 
-  target->Set(FIXED_ONE_BYTE_STRING(env->isolate(), "Hash"), t->GetFunction(env->context()).ToLocalChecked());
+  target->Set(FIXED_ONE_BYTE_STRING(env->isolate(), "Hash"),
+              t->GetFunction(env->context()).ToLocalChecked());
 }
 
 
@@ -3478,7 +3481,8 @@ void Sign::Initialize(Environment* env, v8::Local<Object> target) {
   env->SetProtoMethod(t, "update", SignUpdate);
   env->SetProtoMethod(t, "sign", SignFinal);
 
-  target->Set(FIXED_ONE_BYTE_STRING(env->isolate(), "Sign"), t->GetFunction(env->context()).ToLocalChecked());
+  target->Set(FIXED_ONE_BYTE_STRING(env->isolate(), "Sign"),
+              t->GetFunction(env->context()).ToLocalChecked());
 }
 
 

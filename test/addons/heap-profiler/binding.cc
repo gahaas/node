@@ -20,7 +20,9 @@ inline void Initialize(v8::Local<v8::Object> binding) {
   v8::Isolate* const isolate = binding->GetIsolate();
   v8::Local<v8::Context> context = isolate->GetCurrentContext();
   binding->Set(v8::String::NewFromUtf8(isolate, "test"),
-               v8::FunctionTemplate::New(isolate, Test)->GetFunction(context).ToLocalChecked());
+               v8::FunctionTemplate::New(isolate, Test)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
 }
 
 NODE_MODULE(NODE_GYP_MODULE_NAME, Initialize)

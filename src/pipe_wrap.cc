@@ -57,7 +57,9 @@ Local<Object> PipeWrap::Instantiate(Environment* env,
   EscapableHandleScope handle_scope(env->isolate());
   AsyncHooks::DefaultTriggerAsyncIdScope trigger_scope(parent);
   CHECK_EQ(false, env->pipe_constructor_template().IsEmpty());
-  Local<Function> constructor = env->pipe_constructor_template()->GetFunction(env->context()).ToLocalChecked();
+  Local<Function> constructor = env->pipe_constructor_template()
+                                    ->GetFunction(env->context())
+                                    .ToLocalChecked();
   CHECK_EQ(false, constructor.IsEmpty());
   Local<Value> type_value = Int32::New(env->isolate(), type);
   Local<Object> instance =
