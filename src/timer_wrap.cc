@@ -63,7 +63,7 @@ class TimerWrap : public HandleWrap {
 
     env->SetProtoMethod(constructor, "start", Start);
 
-    target->Set(timerString, constructor->GetFunction());
+    target->Set(timerString, constructor->GetFunction(env->context()).ToLocalChecked());
 
     target->Set(env->context(),
                 FIXED_ONE_BYTE_STRING(env->isolate(), "setupTimers"),
