@@ -90,6 +90,10 @@ class PerIsolatePlatformData :
   TaskQueue<v8::Task> foreground_tasks_;
   TaskQueue<DelayedTask> foreground_delayed_tasks_;
 
+  // This flag indicates that the TaskRunner has been shut down. Tasks posted
+  // after shutdown get ignored.
+  bool is_shutdown_ = false;
+
   // Use a custom deleter because libuv needs to close the handle first.
   typedef std::unique_ptr<DelayedTask, std::function<void(DelayedTask*)>>
       DelayedTaskPointer;

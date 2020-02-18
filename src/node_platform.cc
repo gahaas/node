@@ -241,6 +241,7 @@ void PerIsolatePlatformData::PostIdleTask(std::unique_ptr<v8::IdleTask> task) {
 }
 
 void PerIsolatePlatformData::PostTask(std::unique_ptr<Task> task) {
+  if (is_shutdown_) return;
   CHECK_NE(flush_tasks_, nullptr);
   foreground_tasks_.Push(std::move(task));
   uv_async_send(flush_tasks_);
@@ -248,6 +249,7 @@ void PerIsolatePlatformData::PostTask(std::unique_ptr<Task> task) {
 
 void PerIsolatePlatformData::PostDelayedTask(
     std::unique_ptr<Task> task, double delay_in_seconds) {
+  if (is_shutdown_) return;
   CHECK_NE(flush_tasks_, nullptr);
   std::unique_ptr<DelayedTask> delayed(new DelayedTask());
   delayed->task = std::move(task);
@@ -262,6 +264,7 @@ PerIsolatePlatformData::~PerIsolatePlatformData() {
 }
 
 void PerIsolatePlatformData::Shutdown() {
+  is_shutdown_ = true;
   if (flush_tasks_ == nullptr)
     return;
 
